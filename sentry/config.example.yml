@@ -52,6 +52,7 @@ system.internal-url-prefix: 'http://web:9000'
 # If this file ever becomes compromised, it's important to generate a new key.
 # Changing this value will result in all current sessions being invalidated.
 # A new key can be generated with `$ sentry config generate-secret-key`
+# head /dev/urandom | tr -dc "a-z0-9@#%^&*(-_=+)" | head -c 50 | sed -e 's/[\/&]/\\&/g'
 system.secret-key: '!!changeme!!'
 
 # The ``redis.clusters`` setting is used, unsurprisingly, to configure Redis
