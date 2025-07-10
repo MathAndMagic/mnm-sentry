@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -e
+set -euo pipefail
 
 # Add Docker's official GPG key:
 sudo apt-get update
@@ -47,12 +47,14 @@ sudo -u sentry \
   bash -c 'cd /home/sentry/mnm-sentry && ./install.sh --report-self-hosted-issues'
 
 cat << EOF > /dev/stdout
-Update sentry/config.yaml and .env
-Then run commands
+Run commands:
 
-sudo -u sentry \
-  bash -c 'cd /home/sentry/mnm-sentry && ./install.sh --report-self-hosted-issues'
+sudo su sentry
+cd ~/mnm-sentry
 
-sudo -u sentry \
-  bash -c 'cd /home/sentry/mnm-sentry &&  docker compose up -d'
+# Update sentry/config.yaml and .env
+
+./install.sh --report-self-hosted-issues
+
+docker compose up -d
 EOF
